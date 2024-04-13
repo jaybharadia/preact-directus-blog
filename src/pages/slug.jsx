@@ -1,11 +1,11 @@
 import { useEffect, useState } from "preact/compat";
 import {  useRoute , useLocation} from "preact-iso";
-import directus from "../../utils/directus";
+import directus from "../utils/directus";
 import { readItem } from "@directus/sdk";
-export  function Post() {
+export  function Page() {
   const {params} = useRoute();
   const location = useLocation();
-    const [post, setPost] = useState( {});
+    const [page, setPage] = useState( {});
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -13,8 +13,8 @@ export  function Post() {
 
         const fetchData = async () => {
           try {
-            const post = await directus.request(readItem("posts", params.slug  ));
-            setPost(post); // Assuming posts.data contains an array of blog posts
+            const page = await directus.request(readItem("pages", params.slug  ));
+            setPage(page); // Assuming posts.data contains an array of blog posts
           } catch (error) {
             location.route('/404');
             console.error("Error fetching page:", error);
@@ -33,8 +33,8 @@ export  function Post() {
           <p>Loading...</p>
         ) : (
             <>
-              <h1>{post.title}</h1>
-              <div dangerouslySetInnerHTML={{ __html: post.content }} />
+              <h1>{page.title}</h1>
+              <div dangerouslySetInnerHTML={{ __html: page.content }} />
             </>
         )}
       

@@ -4,6 +4,7 @@ import { LocationProvider, Router, Route} from 'preact-iso';
 import { NotFound } from './pages/_404.jsx';
 import {PostList} from "./pages/post/list.jsx";
 import {Post} from "./pages/post/slug.jsx";
+import {Page} from "./pages/slug.jsx";
 import {Home} from "./pages/index.jsx";
 
 import { Header } from './components/Header.jsx';
@@ -16,9 +17,11 @@ export function App() {
 			<main>
 				<Router>
 				<Route path="/" component={Home} />
+
 					<Route path="/post" component={PostList} />
+					<Route path="/404" component={NotFound} />
 					<Route path="/post/:slug" component={Post} />
-					<Route default component={NotFound} />
+				<Route path="/:slug" component={Page} />
 
 				</Router>
 			</main>
