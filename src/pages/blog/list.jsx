@@ -2,7 +2,7 @@ import { useEffect, useState } from "preact/compat";
 import { Link } from "preact-router";
 import directus from "../../utils/directus";
 import { readItems } from "@directus/sdk";
-export  function PostList() {
+export  function BlogList() {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -13,6 +13,7 @@ export  function PostList() {
           try {
             const posts = await directus.request(readItems("posts", {
                 fields : ['title', 'published_date', 'author.name', 'slug'],
+                sort: ['-published_date']
             }));
             console.log("🚀 ~ fetchData ~ posts:", posts)
             setPosts(posts); // Assuming posts.data contains an array of blog posts
@@ -36,7 +37,7 @@ export  function PostList() {
           <ul>
           {posts.map((post) => (
             <li key={post.slug}>
-                <Link href={`/post/${post.slug}`}>
+                <Link href={`/blog/${post.slug}`}>
               <h2 style={{ textAlign: "left", textDecoration: 'underline', cursor: 'pointer' }}>{post.title}</h2>
                 </Link>
               <div  style={{ textAlign: "left" }}>

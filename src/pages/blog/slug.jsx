@@ -2,7 +2,7 @@ import { useEffect, useState } from "preact/compat";
 import {  useRoute , useLocation} from "preact-iso";
 import directus from "../../utils/directus";
 import { readItem } from "@directus/sdk";
-export  function Post() {
+export  function Blog() {
   const {params} = useRoute();
   const location = useLocation();
     const [post, setPost] = useState( {});
@@ -31,7 +31,8 @@ export  function Post() {
       <div>
         { loading ? (
           <p>Loading...</p>
-        ) : (
+          ) : (
+            <img src={`${directus.url}assets/${post.image.filename_disk}?width=600`} alt="" />
             <>
               <h1>{post.title}</h1>
               <div dangerouslySetInnerHTML={{ __html: post.content }} />

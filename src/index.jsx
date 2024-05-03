@@ -2,8 +2,8 @@ import {render} from 'preact';
 import { LocationProvider, Router, Route} from 'preact-iso';
 
 import { NotFound } from './pages/_404.jsx';
-import {PostList} from "./pages/post/list.jsx";
-import {Post} from "./pages/post/slug.jsx";
+import {BlogList} from "./pages/blog/list.jsx";
+import {Blog} from "./pages/blog/slug.jsx";
 import {Page} from "./pages/slug.jsx";
 import {Home} from "./pages/index.jsx";
 
@@ -18,9 +18,9 @@ export function App() {
 				<Router>
 				<Route path="/" component={Home} />
 
-					<Route path="/post" component={PostList} />
+					<Route path="/blog" component={BlogList} />
 					<Route path="/404" component={NotFound} />
-					<Route path="/post/:slug" component={Post} />
+					<Route path="/blog/:slug" component={Blog} />
 				<Route path="/:slug" component={Page} />
 
 				</Router>
